@@ -46,7 +46,7 @@ const ReferralBanner = () => {
             <div className="container">
                 <div className="referral-content" ref={contentRef}>
                     <h3 className="referral-title text-orange">Premier Pack</h3>
-                    <p style={{ maxWidth: '800px', margin: '0 auto', lineHeight: '1.8' }}>
+                    <p style={{ maxWidth: '800px', margin: '0 auto', lineHeight: '1.8',color:"white" }}>
                         Premium coverage, lowest rates. We offer the most affordable and reliable car insurance in the GTA.
                         Experience <span className="text-orange">guaranteed lowest prices</span>,
                         <span className="text-orange"> trusted coverage</span>, fast quotes, and personalized service tailored just for you.
