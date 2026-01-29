@@ -77,7 +77,7 @@ const Hero = () => {
             <div className="container hero-layout" style={{ position: 'relative', zIndex: 2 }}>
                 <div className="hero-content" ref={contentRef}>
                     <h1>CAR INSURANCE</h1>
-                    <h2 className="text-orange">GUARANTEED LOWEST PRICES IN THE INSIDERSRATE</h2>
+                    <h2 className="text-orange">GUARANTEED LOWEST PRICES IN THE GTA</h2>
                     <p className="hero-subtext">New or looking for a better quote?</p>
 
                     <div className="cta-wrapper">

@@ -7,7 +7,7 @@ const Footer = () => {
                 <marquee behavior="scroll" direction="left" scrollamount="6">
                     © 2025{' '}
                     <a className="footer-link" href="#" target="_self" rel="noreferrer">
-                        LA-projects
+                        VBuild
                     </a>{' '}
                     ™. All rights reserved.
                 </marquee>
