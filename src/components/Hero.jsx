@@ -54,10 +54,7 @@ const Hero = () => {
                 className="hero-bg-layer"
                 style={{
                     position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
+                    inset: 0,
                     background: 'linear-gradient(to right, rgba(18, 18, 18, 0.95) 30%, rgba(18, 18, 18, 0.4) 100%)',
                     backgroundAttachment: 'fixed',
                     zIndex: 1
@@ -68,10 +65,7 @@ const Hero = () => {
                 className="hero-image-layer"
                 style={{
                     position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
+                    inset: 0,
                     backgroundImage: "url('/assets/car.png')",
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
@@ -83,7 +77,7 @@ const Hero = () => {
             <div className="container hero-layout" style={{ position: 'relative', zIndex: 2 }}>
                 <div className="hero-content" ref={contentRef}>
                     <h1>CAR INSURANCE</h1>
-                    <h2 className="text-orange">GUARANTEED LOWEST PRICES IN THE GTA</h2>
+                    <h2 className="text-orange">GUARANTEED LOWEST PRICES IN THE INSIDERSRATE</h2>
                     <p className="hero-subtext">New or looking for a better quote?</p>
 
                     <div className="cta-wrapper">
