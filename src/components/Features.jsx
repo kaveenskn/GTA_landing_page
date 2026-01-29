@@ -15,6 +15,7 @@ const Features = () => {
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     start: "top 80%",
+                    toggleActions: "play reverse play reverse"
                 },
                 x: -50,
                 opacity: 0,
@@ -27,6 +28,7 @@ const Features = () => {
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     start: "top 70%",
+                    toggleActions: "play reverse play reverse"
                 },
                 y: 50,
                 opacity: 0,

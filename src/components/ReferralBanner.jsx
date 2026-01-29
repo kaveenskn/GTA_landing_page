@@ -14,6 +14,7 @@ const ReferralBanner = () => {
                 scrollTrigger: {
                     trigger: bannerRef.current,
                     start: "top 80%",
+                    toggleActions: "play reverse play reverse"
                 },
                 x: 100, // From right
                 opacity: 0,
@@ -26,6 +27,7 @@ const ReferralBanner = () => {
                 scrollTrigger: {
                     trigger: bannerRef.current,
                     start: "top 70%",
+                    toggleActions: "play reverse play reverse"
                 },
                 y: 20,
                 opacity: 0,
