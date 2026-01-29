@@ -1,0 +1,69 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Environment variables
+.env
+.env.*
+!.env.example
+!.env.sample
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Vite / tooling caches
+.vite
+.cache
+.eslintcache
+.stylelintcache
+.parcel-cache
+.turbo
+.next
+.nuxt
+
+# Testing / coverage
+coverage
+.nyc_output
+
+# TypeScript
+*.tsbuildinfo
+
+# Package manager caches
+.npm
+.pnpm-store
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Temporary files
+tmp
+temp
+*.tmp
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
