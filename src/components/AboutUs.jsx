@@ -19,9 +19,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 const AboutUs = () => {
     const [activeTab, setActiveTab] = useState('about');
+    const [displayedTab, setDisplayedTab] = useState('about');
     const sectionRef = useRef(null);
     const leftColRef = useRef(null);
     const rightColRef = useRef(null);
+    const tabContentRef = useRef(null);
+    const isSwitchingRef = useRef(false);
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
@@ -36,13 +39,13 @@ const AboutUs = () => {
             tl.from(leftColRef.current, {
                 x: -50,
                 opacity: 0,
-                duration: 0.8,
+                duration: 1,
                 ease: "power3.out"
             })
                 .from(rightColRef.current, {
                     x: 50,
                     opacity: 0,
-                    duration: 0.8,
+                    duration: 1,
                     ease: "power3.out"
                 }, "-=0.6");
         }, sectionRef);
@@ -71,6 +74,58 @@ const AboutUs = () => {
         { id: 'team', label: 'Team' }
     ];
 
+    const handleTabClick = (nextTab) => {
+        if (nextTab === activeTab) return;
+        if (isSwitchingRef.current) return;
+
+        setActiveTab(nextTab);
+
+        // Smoothly fade/slide content out, swap, then fade/slide in.
+        const el = tabContentRef.current;
+        if (!el) {
+            setDisplayedTab(nextTab);
+            return;
+        }
+
+        isSwitchingRef.current = true;
+
+        const prefersReducedMotion =
+            typeof window !== 'undefined' &&
+            window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReducedMotion) {
+            setDisplayedTab(nextTab);
+            isSwitchingRef.current = false;
+            return;
+        }
+
+        gsap.to(el, {
+            opacity: 0,
+            y: 10,
+            duration: 0.22,
+            ease: 'power2.out',
+            overwrite: 'auto',
+            onComplete: () => {
+                setDisplayedTab(nextTab);
+                gsap.fromTo(
+                    el,
+                    { opacity: 0, y: 10 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.5,
+                        ease: 'power2.out',
+                        overwrite: 'auto',
+                        onComplete: () => {
+                            isSwitchingRef.current = false;
+                        }
+                    }
+                );
+            }
+        });
+    };
+
     return (
         <section className="about-section" ref={sectionRef}>
             <div className="container">
@@ -84,16 +139,16 @@ const AboutUs = () => {
                                 <button
                                     key={tab.id}
                                     className={`tab-btn ${activeTab === tab.id ? 'active' : ''}`}
-                                    onClick={() => setActiveTab(tab.id)}
+                                    onClick={() => handleTabClick(tab.id)}
                                 >
                                     {tab.label}
                                 </button>
                             ))}
                         </div>
 
-                        <div className="tab-content fade-in">
-                            <h3 className="content-title">{content[activeTab].title}</h3>
-                            <p className="content-text">{content[activeTab].text}</p>
+                        <div className="tab-content" ref={tabContentRef} style={{ willChange: 'transform, opacity' }}>
+                            <h3 className="content-title">{content[displayedTab].title}</h3>
+                            <p className="content-text">{content[displayedTab].text}</p>
 
                             <a href="#contact" className="learn-more-link">
                                 Learn More <span className="arrow">→</span>

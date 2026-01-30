@@ -15,18 +15,13 @@ const Footer = () => {
             gsap.from(textRef.current, {
                 scrollTrigger: {
                     trigger: footerRef.current,
-                    start: 'top 98%',
-                    toggleActions: 'play none none none',
-                    once: true
+                    start: 'top 92%',
+                    toggleActions: 'play none none reverse'
                 },
-                immediateRender: false,
                 opacity: 0,
                 y: 20,
-                duration: 1.4,
-                ease: 'power3.out',
-                onComplete: () => {
-                    gsap.set(textRef.current, { clearProps: 'transform,opacity' });
-                }
+                duration: 2.5,
+                ease: 'power3.out'
             });
         }, footerRef);
 
@@ -35,7 +30,7 @@ const Footer = () => {
 
     return (
         <footer className="footer" ref={footerRef}>
-            <div className="footer-content" ref={textRef} style={{ fontSize: '0.95rem', fontWeight: 500, color: 'rgba(255, 255, 255, 0.9)' }}>
+            <div className="footer-content" ref={textRef} style={{ fontSize: '0.95rem', fontWeight: 500, color: 'rgba(255, 255, 255, 0.76)' }}>
                 © 2025{' '}
                 <a className="footer-link" href="#" target="_self" rel="noreferrer">
                     VBuild
