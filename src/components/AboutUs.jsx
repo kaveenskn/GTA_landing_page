@@ -38,13 +38,13 @@ const AboutUs = () => {
             tl.from(leftColRef.current, {
                 x: -50,
                 opacity: 0,
-                duration: 0.8,
+                duration: 1,
                 ease: "power3.out"
             })
                 .from(rightColRef.current, {
                     x: 50,
                     opacity: 0,
-                    duration: 0.8,
+                    duration: 1,
                     ease: "power3.out"
                 }, "-=0.6");
         }, sectionRef);
@@ -110,7 +110,9 @@ const AboutUs = () => {
                     {
                         opacity: 1,
                         y: 0,
-                        duration: 0.32,
+
+                        duration: 0.5,
+
                         ease: 'power2.out',
                         overwrite: 'auto',
                         onComplete: () => {

@@ -460,13 +460,7 @@ a {
   }
 }
 
-/* Features: center the last card on tablets/small-desktops (3 + 1 layout) */
-@media (min-width: 700px) and (max-width: 1219px) {
-  .features-grid .feature-card:nth-child(4) {
-    grid-column: 2;
-    justify-self: center;
-  }
-}
+
 
 @media (max-width: 380px) {
   .features-grid {
