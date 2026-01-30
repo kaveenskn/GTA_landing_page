@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css';
@@ -6,12 +6,11 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
 // Import images
-import officeImg from '../assets/about/office.png';
-import meetingImg from '../assets/about/meeting.png';
-import dashboardImg from '../assets/about/dashboard.png';
-import teamImg from '../assets/about/team.png';
-
-import { useRef, useLayoutEffect } from 'react';
+import sliderImg1 from '../assets/about/slider_img_1.png';
+import sliderImg2 from '../assets/about/slider_img_2.png';
+import sliderImg3 from '../assets/about/car_insurance_2.png';
+import sliderImg4 from '../assets/about/slider_img_4.png';
+import sliderImg5 from '../assets/about/car_insurance_3.png';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -19,9 +18,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 const AboutUs = () => {
     const [activeTab, setActiveTab] = useState('about');
+    const [displayedTab, setDisplayedTab] = useState('about');
     const sectionRef = useRef(null);
     const leftColRef = useRef(null);
     const rightColRef = useRef(null);
+    const tabContentRef = useRef(null);
+    const isSwitchingRef = useRef(false);
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
@@ -52,24 +54,73 @@ const AboutUs = () => {
 
     const content = {
         about: {
-            title: "Redefining Financial Excellence",
-            text: "We are more than just a financial institution; we are your partners in growth. Leveraging cutting-edge technology and deep industry expertise, we empower businesses and individuals to navigate the complexities of the modern financial landscape with confidence. Our commitment to transparency, security, and innovation is the bedrock of our success."
-        },
-        founders: {
-            title: "Visionaries at the Helm",
-            text: "Our journey began with a shared vision: to democratize access to premium financial tools. Our founders, veterans of Wall Street and Silicon Valley, combined their expertise to build a platform that bridges the gap between traditional banking and the digital future. Their leadership continues to inspire our relentless pursuit of excellence."
+            title: "About Us",
+            text:
+                "At InsidersRate, we help drivers across the GTA find the cheapest auto insurance without the stress. We compare rates from trusted insurers, uncover insider discounts, and match you with coverage that actually fits your needs. No upselling. No confusing jargon. Just honest savings, fast quotes, and clear advice. Our mission is simple: pay less for car insurance and feel confident about your coverage."
         },
         team: {
-            title: "A Global Team of Experts",
-            text: "Our strength lies in our people. We are a diverse team of data scientists, financial analysts, and customer success champions hailing from over 20 countries. United by a passion for solving complex problems, we work tirelessly to deliver intuitive, high-impact solutions that drive real results for our clients."
+            title: "Insurance Insiders, Not Salespeople",
+            text:
+                "Our team is made up of licensed insurance professionals, rate analysts, and customer-first advisors who know the GTA market inside out. We stay ahead of changing rates, policies, and discounts so you do not have to. Every recommendation is based on data, experience, and what saves you the most money. Real people. Real savings. Real support."
         }
     };
 
     const tabs = [
         { id: 'about', label: 'About Us' },
-        { id: 'founders', label: 'Our Founders' },
         { id: 'team', label: 'Team' }
     ];
+
+    const handleTabClick = (nextTab) => {
+        if (nextTab === activeTab) return;
+        if (isSwitchingRef.current) return;
+
+        setActiveTab(nextTab);
+
+        // Smoothly fade/slide content out, swap, then fade/slide in.
+        const el = tabContentRef.current;
+        if (!el) {
+            setDisplayedTab(nextTab);
+            return;
+        }
+
+        isSwitchingRef.current = true;
+
+        const prefersReducedMotion =
+            typeof window !== 'undefined' &&
+            window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReducedMotion) {
+            setDisplayedTab(nextTab);
+            isSwitchingRef.current = false;
+            return;
+        }
+
+        gsap.to(el, {
+            opacity: 0,
+            y: 10,
+            duration: 0.22,
+            ease: 'power2.out',
+            overwrite: 'auto',
+            onComplete: () => {
+                setDisplayedTab(nextTab);
+                gsap.fromTo(
+                    el,
+                    { opacity: 0, y: 10 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.32,
+                        ease: 'power2.out',
+                        overwrite: 'auto',
+                        onComplete: () => {
+                            isSwitchingRef.current = false;
+                        }
+                    }
+                );
+            }
+        });
+    };
 
     return (
         <section className="about-section" ref={sectionRef}>
@@ -84,16 +135,16 @@ const AboutUs = () => {
                                 <button
                                     key={tab.id}
                                     className={`tab-btn ${activeTab === tab.id ? 'active' : ''}`}
-                                    onClick={() => setActiveTab(tab.id)}
+                                    onClick={() => handleTabClick(tab.id)}
                                 >
                                     {tab.label}
                                 </button>
                             ))}
                         </div>
 
-                        <div className="tab-content fade-in">
-                            <h3 className="content-title">{content[activeTab].title}</h3>
-                            <p className="content-text">{content[activeTab].text}</p>
+                        <div className="tab-content" ref={tabContentRef} style={{ willChange: 'transform, opacity' }}>
+                            <h3 className="content-title">{content[displayedTab].title}</h3>
+                            <p className="content-text">{content[displayedTab].text}</p>
 
                             <a href="#contact" className="learn-more-link">
                                 Learn More <span className="arrow">→</span>
@@ -115,25 +166,31 @@ const AboutUs = () => {
                         >
                             <SwiperSlide>
                                 <div className="slide-image-container">
-                                    <img src={officeImg} alt="Modern Office" className="slide-image" />
+                                    <img src={sliderImg1} alt="Professional Car Insurance" className="slide-image" />
                                     <div className="slide-overlay"></div>
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
                                 <div className="slide-image-container">
-                                    <img src={meetingImg} alt="Team Meeting" className="slide-image" />
+                                    <img src={sliderImg2} alt="Corporate Office & Vehicle" className="slide-image" />
                                     <div className="slide-overlay"></div>
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
                                 <div className="slide-image-container">
-                                    <img src={dashboardImg} alt="Financial Dashboard" className="slide-image" />
+                                    <img src={sliderImg3} alt="Detailed Car Quality" className="slide-image" />
                                     <div className="slide-overlay"></div>
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
                                 <div className="slide-image-container">
-                                    <img src={teamImg} alt="Leadership Team" className="slide-image" />
+                                    <img src={sliderImg4} alt="Family Travel Security" className="slide-image" />
+                                    <div className="slide-overlay"></div>
+                                </div>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className="slide-image-container">
+                                    <img src={sliderImg5} alt="Road Safety & Protection" className="slide-image" />
                                     <div className="slide-overlay"></div>
                                 </div>
                             </SwiperSlide>
