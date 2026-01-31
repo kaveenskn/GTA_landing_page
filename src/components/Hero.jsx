@@ -78,10 +78,10 @@ const Hero = () => {
                 <div className="hero-content" ref={contentRef}>
                     <h1>CAR INSURANCE</h1>
                     <h2 className="text-orange">GUARANTEED LOWEST PRICES IN THE GTA</h2>
-                    <p className="hero-subtext">New or looking for a better quote?</p>
+                    <p className="hero-subtext">Want to save 30% or more?</p>
 
                     <div className="cta-wrapper">
-                        <a href="https://wa.me/16472195969" className="btn btn-whatsapp" ref={ctaRef}>
+                        <a href="https://wa.me/14379802528" className="btn btn-whatsapp" ref={ctaRef}>
                             <span className="icon-wrapper">
                                 <img src="/assets/whatsapp.svg" alt="" className="whatsapp-icon" />
                             </span>
@@ -89,7 +89,7 @@ const Hero = () => {
                         </a>
                         <div className="cta-details">
                             <p>Contact via WhatsApp</p>
-                            <p className="phone-number">+1 (647) 219-5969</p>
+                            <p className="phone-number">+1 (437) 980-2528</p>
                         </div>
                     </div>
                 </div>
