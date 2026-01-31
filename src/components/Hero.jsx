@@ -88,7 +88,7 @@ const Hero = () => {
                             Chat on WhatsApp – Get a Quote
                         </a>
                         <div className="cta-details">
-                            <p>Ask for Enoch via WhatsApp</p>
+                            <p>Contact via WhatsApp</p>
                             <p className="phone-number">+1 (647) 219-5969</p>
                         </div>
                     </div>
