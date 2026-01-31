@@ -6,11 +6,11 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
 // Import images
-import sliderImg1 from '../assets/about/about_us_slider_1.png';
-import sliderImg2 from '../assets/about/slider_img_2.png';
-import sliderImg3 from '../assets/about/car_insurance_2.png';
-import sliderImg4 from '../assets/about/slider_img_4.png';
-import sliderImg5 from '../assets/about/car_insurance_3.png';
+import sliderImg1 from '../assets/about/rolsroyceimage.png';
+import sliderImg2 from '../assets/about/image.png';
+import sliderImg3 from '../assets/about/i8image.png';
+import sliderImg4 from '../assets/about/about_us_slider_1.png';
+import sliderImg5 from '../assets/about/imagebmw.png';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
