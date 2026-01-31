@@ -31,9 +31,9 @@ const Footer = () => {
     return (
         <footer className="footer" ref={footerRef}>
             <div className="footer-content" ref={textRef} style={{ fontSize: '0.95rem', fontWeight: 500, color: 'rgba(255, 255, 255, 0.76)' }}>
-                © 2025{' '}
+                © 2026{' '}
                 <a className="footer-link" href="#" target="_self" rel="noreferrer">
-                    VBuild
+                    INSIDERSRATE
                 </a>{' '}
                 ™. All rights reserved.
             </div>

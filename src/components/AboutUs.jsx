@@ -10,7 +10,7 @@ import sliderImg1 from '../assets/about/rolsroyceimage.png';
 import sliderImg2 from '../assets/about/image.png';
 import sliderImg3 from '../assets/about/i8image.png';
 import sliderImg4 from '../assets/about/about_us_slider_1.png';
-import sliderImg5 from '../assets/about/imagebmw.png';
+import sliderImg5 from '../assets/about/imagecopy.png';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -148,9 +148,7 @@ const AboutUs = () => {
                             <h3 className="content-title">{content[displayedTab].title}</h3>
                             <p className="content-text">{content[displayedTab].text}</p>
 
-                            <a href="#contact" className="learn-more-link">
-                                Learn More <span className="arrow">→</span>
-                            </a>
+
                         </div>
                     </div>
 
